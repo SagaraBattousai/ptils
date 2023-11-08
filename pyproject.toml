@@ -1,6 +1,30 @@
 [build-system]
-requires = [
-  "setuptools >= 57.0.0",
-  "wheel"
-]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "ptils"
+version = "0.0.3"
+description = ("A Python Utility library for use in both python programming and "
+               "command line utilities")
+readme = "README.rst"
+requires-python = ">=3.6" #9"
+license = {file = "LICENSE"}
+authors = [
+    {name = "James Calo", email = "jamesafcalo@gmail.com"},
+]
+
+classifiers = [
+  "Programming Language :: Python :: 3.6",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Operating System :: OS Independent",
+]
+
+[project.scripts]
+tflite_clib_builder = "tflite_clib_builder.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["tflite_clib_builder"]
+
+[tool.black]
+preview = true
