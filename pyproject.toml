@@ -5,26 +5,40 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ptils"
 version = "0.0.3"
-description = ("A Python Utility library for use in both python programming and "
-               "command line utilities")
+description = "A Python Utility library for use in both python programming and command line utilities"
 readme = "README.rst"
-requires-python = ">=3.6" #9"
+requires-python = ">=3.9"
 license = {file = "LICENSE"}
 authors = [
     {name = "James Calo", email = "jamesafcalo@gmail.com"},
 ]
 
 classifiers = [
-  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.9",
   "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
   "Operating System :: OS Independent",
 ]
 
-[project.scripts]
-tflite_clib_builder = "tflite_clib_builder.__main__:main"
+dependencies = [
+  "numpy",
+  "matplotlib.pyplot",
+  "Pillow"
+]
 
-[tool.setuptools.packages.find]
-include = ["tflite_clib_builder"]
+[project.scripts]
+cifar10-explore = "ptils.cifar.__main__:cifar10_explore"
+
+[tool.setuptools]
+#defaults to ture but I'm a man of explicit statements
+include-package-data = true
+
+[tool.setuptools.package-data]
+#Should make data a namespace package (according to setuptools) but when I
+#have time I need to learn about them first
+"ptils.cifar.data" = ["*.rgb"]
+
+# [tool.setuptools.packages.find]
+# include = ["ptils"]
 
 [tool.black]
 preview = true
